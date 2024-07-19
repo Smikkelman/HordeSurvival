@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfw3b00ynx01g"]
+
+[ext_resource type="Script" path="res://Horde survival exp1/PlayerCharacter/PlayerCharacter.gd" id="1_otfg2"]
+[ext_resource type="Texture2D" uid="uid://imbc102ypvsw" path="res://Godot assets/Horde survival exp1/Player character1 scherp.png" id="1_uay6m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qgod1"]
+radius = 136.235
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
+visibility_layer = 2
+scale = Vector2(0.5, 0.5)
+collision_mask = 2
+script = ExtResource("1_otfg2")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_uay6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 2
+position = Vector2(-24, 120)
+shape = SubResource("CircleShape2D_qgod1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

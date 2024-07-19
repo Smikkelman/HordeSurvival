@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://oy7x3pppx121"]
+
+[ext_resource type="Texture2D" uid="uid://b7qw0hfu7nph3" path="res://Godot assets/Horde survival exp1/Top down view BG level 1.png" id="1_3jicm"]
+[ext_resource type="Script" path="res://Horde survival exp1/Level/level.gd" id="1_55lwx"]
+[ext_resource type="PackedScene" uid="uid://cfw3b00ynx01g" path="res://Horde survival exp1/PlayerCharacter/PlayerCharacter.tscn" id="2_sk7hb"]
+[ext_resource type="PackedScene" uid="uid://bf6ae4pnggd4p" path="res://Horde survival exp1/PlayerCharacter/EnemyCharater.tscn" id="3_to8wm"]
+[ext_resource type="PackedScene" uid="uid://bhgdnlsdgs7cb" path="res://Horde survival exp1/UI/control.tscn" id="5_0o7yh"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_55lwx")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(20, 20)
+texture = ExtResource("1_3jicm")
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_sk7hb")]
+
+[node name="EnemyCharacter" parent="." instance=ExtResource("3_to8wm")]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("5_0o7yh")]
+
+[connection signal="enemy_collision" from="." to="PlayerCharacter" method="_on_level_enemy_collision"]
+[connection signal="enemy_collision" from="EnemyCharacter" to="PlayerCharacter" method="_on_enemy_character_enemy_collision"]
